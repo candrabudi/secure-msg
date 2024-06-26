@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('user_types', function (Blueprint $table) {
             $table->id();
+            $table->integer('central_id');
+            $table->integer('parent_id');
+            $table->string('logo_image');
+            $table->string('label');
+            $table->string('color');
+            $table->string('type');
+            $table->integer('is_show');
             $table->timestamps();
         });
     }

@@ -49,4 +49,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserProfile::class, 'user_id', 'id');
     }
+
+    public function UserData()
+    {
+        return $this->hasOne(UserData::class, 'user_id', 'id');
+    }
 }

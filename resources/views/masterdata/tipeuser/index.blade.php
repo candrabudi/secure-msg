@@ -3,10 +3,10 @@
 @section('content')
     <div
         class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[1.3rem] bg-slate-100 px-4 pb-10 shadow-sm before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
-        <h2 class="intro-y mt-10 text-lg font-medium">Data List Pusat</h2>
+        <h2 class="intro-y mt-10 text-lg font-medium">Data Tipe User</h2>
         <div class="mt-5 grid grid-cols-12 gap-6">
             <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center sm:flex-nowrap">
-                <a href="{{ route('managmenet.central.create') }}" data-tw-merge=""
+                <a href="{{ route('masterdata.typeuser.create') }}" data-tw-merge=""
                     class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-primary border-primary text-white dark:border-primary mr-2 shadow-md">Tambah
                     Data</a>
                 <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative"><button data-tw-merge=""
@@ -60,23 +60,23 @@
                         <tr data-tw-merge="" class="">
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
-                                Username
+                                Nama Pusat
                             </th>
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
-                                Nama Lengkap
+                                Nama Induk
                             </th>
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
-                                Nama Alias
+                                Logo
                             </th>
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
-                                Jabatan
+                                Label
                             </th>
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0">
-                                NRP / NIK
+                                Warna
                             </th>
                             <th data-tw-merge=""
                                 class="font-medium px-5 py-3 dark:border-darkmode-300 whitespace-nowrap border-b-0 text-center">
@@ -113,7 +113,7 @@
             const pagination = document.getElementById('pagination');
             const productTbody = document.getElementById('product-tbody');
             const perPageSelect = document.getElementById('per-page');
-            const productsIndexRoute = @json(route('managmenet.central.getCentral'));
+            const productsIndexRoute = @json(route('masterdata.typeuser.getTypeUser'));
             const searchInput = document.getElementById('search-input');
             const infoDiv = document.getElementById('info-div'); // Element to show info
 
@@ -121,41 +121,48 @@
                 fetch(`${productsIndexRoute}?page=${page}&per_page=${perPage}&search=${encodeURIComponent(search)}`)
                     .then(response => response.json())
                     .then(data => {
-                        renderProducts(data.data);
+                        renderUserTypes(data.data);
                         renderPagination(data);
                         showDataInfo(data); // Show data info
                     });
             }
 
-            function renderProducts(centrals) {
+            function renderUserTypes(usertypes) {
                 productTbody.innerHTML = '';
-                centrals.forEach(central => {
+                usertypes.forEach(usertype => {
                     productTbody.insertAdjacentHTML('beforeend', `
                     <tr data-tw-merge="" class="intro-x">
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                            ${central.username}
+                            ${usertype.user_central.user_profile.full_name}
                         </td>
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                            ${central.user_profile.full_name}
+                            ${usertype.user_parent.user_profile.full_name}
+                        </td>
+                        <td data-tw-merge=""
+                            class="px-5 py-3 border-b dark:border-darkmode-300 box w-40 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
+                            <div class="flex">
+                                <div class="image-fit zoom-in h-10 w-10">
+                                    <img data-placement="top" title="Uploaded at1 May 2020"
+                                        src="${usertype.logo_image}"
+                                        alt="${usertype.label}"
+                                        class="tooltip cursor-pointer rounded-full shadow-[0px_0px_0px_2px_#fff,_1px_1px_5px_rgba(0,0,0,0.32)] dark:shadow-[0px_0px_0px_2px_#3f4865,_1px_1px_5px_rgba(0,0,0,0.32)]">
+                                </div>
+                            </div>
                         </td>
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                           ${central.user_profile.aka_name}
+                            ${usertype.label}
                         </td>
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                           ${central.user_profile.position}
-                        </td>
-                        <td data-tw-merge=""
-                            class="px-5 py-3 border-b dark:border-darkmode-300 box rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600">
-                           ${central.user_profile.national_id}
+                            ${usertype.color}
                         </td>
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
                             <div class="flex items-center justify-center">
-                                <a class="mr-3 flex items-center" href="#">
+                                <a href="/master-data/tipe-user/edit/${usertype.id}" class="mr-3 flex items-center">
                                     <i data-tw-merge="" data-lucide="check-square"
                                         class="stroke-1.5 mr-1 h-4 w-4"></i>
                                     Edit
@@ -224,17 +231,11 @@
                 fetchData(1, this.value, searchInput.value.trim());
             });
 
-            // Define doneTypingInterval as a constant or variable somewhere in your code
-            const doneTypingInterval = 500; // Example: 500 milliseconds
-
-            // Assuming searchInput and perPageSelect are already defined somewhere
-            let typingTimer;
-
             searchInput.addEventListener('input', function() {
-                clearTimeout(typingTimer); // Clear previous timer if exists
+                clearTimeout(typingTimer); // Hapus timer sebelumnya jika ada
 
                 typingTimer = setTimeout(() => {
-                    // Wait time after typing stops
+                    // Waktu tunggu setelah berhenti mengetik
                     const perPage = perPageSelect.value;
                     const search = searchInput.value.trim();
                     fetchData(1, perPage, search);

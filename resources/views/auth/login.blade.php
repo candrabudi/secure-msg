@@ -22,7 +22,7 @@
             <div class="block grid-cols-2 gap-4 xl:grid">
                 <div class="hidden min-h-screen flex-col xl:flex">
                     <a class="-intro-x flex items-center pt-5" href="#">
-                        <img class="w-6" src="dist/images/logo.svg" alt="BAIS">
+                        <img class="w-6" src="https://upload.wikimedia.org/wikipedia/commons/4/48/Insignia_of_the_Indonesian_National_Armed_Forces.svg" alt="BAIS">
                         <span class="ml-3 text-lg text-white"> BAIS</span>
                     </a>
                     <div class="my-auto">

@@ -22,22 +22,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/highlight.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/toastify.css') }}">
-
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/tom-select.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/highlight.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/tippy.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/themes/icewall/side-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/simplebar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/mobile-menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}"> <!-- END: CSS Assets-->
-
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/litepicker.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/highlight.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/tippy.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/themes/icewall/side-nav.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/vendors/simplebar.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/components/mobile-menu.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
 
@@ -99,51 +84,10 @@
     <script src="{{ asset('assets/js/vendors/leaflet-map.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/axios.js') }}"></script>
     <script src="{{ asset('assets/js/utils/colors.js') }}"></script>
-
-    <script src="{{ asset('assets/js/vendors/dom.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tailwind-merge.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tom-select.js') }}"></script>
-    <script src="{{ asset('assets/js/utils/helper.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/highlight.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tippy.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/lucide.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/simplebar.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/transition.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/dropdown.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/popper.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/modal.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/theme-color.js') }}"></script>
     <script src="{{ asset('assets/js/components/base/tom-select.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/highlight.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/source.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/preview-component.js') }}"></script>
-    <script src="{{ asset('assets/js/themes/icewall.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/lucide.js') }}"></script>
-    <script src="{{ asset('assets/js/components/mobile-menu.js') }}"></script>
-    <script src="{{ asset('assets/js/components/themes/icewall/top-bar.js') }}"></script>
-
-    <script src="{{ asset('assets/js/vendors/dom.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tailwind-merge.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/dayjs.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/litepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/utils/helper.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/highlight.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/popper.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/dropdown.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/modal.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/tippy.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/lucide.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/transition.js') }}"></script>
-    <script src="{{ asset('assets/js/vendors/simplebar.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/theme-color.js') }}"></script>
     <script src="{{ asset('assets/js/components/base/litepicker.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/highlight.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/source.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/preview-component.js') }}"></script>
-    <script src="{{ asset('assets/js/themes/icewall.js') }}"></script>
-    <script src="{{ asset('assets/js/components/base/lucide.js') }}"></script>
-    <script src="{{ asset('assets/js/components/mobile-menu.js') }}"></script>
-    <script src="{{ asset('assets/js/components/themes/icewall/top-bar.js') }}"></script>
+
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>

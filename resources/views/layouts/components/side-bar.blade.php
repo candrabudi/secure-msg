@@ -1,5 +1,5 @@
 <nav class="side-nav hidden w-[100px] overflow-x-hidden px-5 pb-16 pt-8 md:block xl:w-[250px]">
-    <ul>
+    <ul style="font-size: 16px;">
         <li>
             <a href="{{ route('dashboard') }}"
                 class="side-menu {{ request()->routeIs('dashboard') ? 'side-menu--active' : '' }}">

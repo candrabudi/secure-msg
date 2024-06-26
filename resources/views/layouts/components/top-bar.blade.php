@@ -2,14 +2,12 @@
     <div class="flex h-full items-center">
         <!-- BEGIN: Logo -->
         <a class="-intro-x hidden md:flex" href="#">
-            <img width="25" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Insignia_of_the_Indonesian_National_Armed_Forces.svg/800px-Insignia_of_the_Indonesian_National_Armed_Forces.svg.png" alt="Icewall Tailwind Admin Dashboard Template">
-            <span class="ml-3 text-lg text-white"> BAIS</span>
+            <img width="50" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Insignia_of_the_Indonesian_National_Armed_Forces.svg/800px-Insignia_of_the_Indonesian_National_Armed_Forces.svg.png" alt="Icewall Tailwind Admin Dashboard Template">
+            <h2 class="ml-3 text-lg text-white mt-3"> BAIS TNI</h2>
         </a>
-        <!-- END: Logo -->
-        <!-- BEGIN: Breadcrumb -->
         <nav aria-label="breadcrumb" class="flex -intro-x mr-auto h-full border-white/[0.08] md:ml-10 md:border-l md:pl-10">
             <ol class="flex items-center text-theme-1 dark:text-slate-300 text-white/90">
-                <li class="">
+                <li class="" style="font-size: 24px;">
                    KELOLA DATA KEAMANAN NASIONAL
                 </li>
             </ol>

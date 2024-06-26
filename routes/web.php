@@ -7,6 +7,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentrallController;
 use App\Http\Controllers\UserTypeController;
+use App\Http\Controllers\ParentController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -26,6 +27,14 @@ Route::prefix('management')->group(function () {
         Route::get('/edit/{userid}', [CentrallController::class, 'edit'])->name('managmenet.central.edit');
         Route::post('/update/{userid}', [CentrallController::class, 'update'])->name('managmenet.central.update');
         Route::get('/getCentral', [CentrallController::class, 'getCentral'])->name('managmenet.central.getCentral');
+    });
+    Route::prefix('parent')->group(function () {
+        Route::get('/', [ParentController::class, 'index'])->name('managmenet.parent');
+        Route::get('/getParent', [ParentController::class, 'getParent'])->name('managmenet.parent.getParent');
+        Route::get('/create', [ParentController::class, 'create'])->name('managmenet.parent.create');
+        Route::post('/store', [ParentController::class, 'store'])->name('managmenet.parent.store');
+        Route::get('/edit/{userid}', [ParentController::class, 'edit'])->name('managmenet.parent.edit');
+        Route::post('/update/{userid}', [ParentController::class, 'update'])->name('managmenet.parent.update');
     });
 });
 

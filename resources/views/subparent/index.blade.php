@@ -3,10 +3,10 @@
 @section('content')
     <div
         class="md:max-w-auto min-h-screen min-w-0 max-w-full flex-1 rounded-[1.3rem] bg-slate-100 px-4 pb-10 shadow-sm before:block before:h-px before:w-full before:content-[''] dark:bg-darkmode-700 md:px-[22px]">
-        <h2 class="intro-y mt-10 text-lg font-medium">Data List Induk</h2>
+        <h2 class="intro-y mt-10 text-lg font-medium">Data List Sub Induk</h2>
         <div class="mt-5 grid grid-cols-12 gap-6">
             <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center sm:flex-nowrap">
-                <a href="{{ route('managmenet.parent.create') }}" data-tw-merge=""
+                <a href="{{ route('managmenet.subparent.create') }}" data-tw-merge=""
                     class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-primary border-primary text-white dark:border-primary mr-2 shadow-md">Tambah
                     Data</a>
                 <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative"><button data-tw-merge=""
@@ -113,7 +113,7 @@
             const pagination = document.getElementById('pagination');
             const parentTBody = document.getElementById('product-tbody');
             const perPageSelect = document.getElementById('per-page');
-            const productsIndexRoute = @json(route('managmenet.parent.getParent'));
+            const productsIndexRoute = @json(route('managmenet.subparent.getSubParent'));
             const searchInput = document.getElementById('search-input');
             const infoDiv = document.getElementById('info-div'); 
 
@@ -155,7 +155,7 @@
                         <td data-tw-merge=""
                             class="px-5 py-3 border-b dark:border-darkmode-300 box w-56 rounded-l-none rounded-r-none border-x-0 shadow-[5px_3px_5px_#00000005] first:rounded-l-[0.6rem] first:border-l last:rounded-r-[0.6rem] last:border-r dark:bg-darkmode-600 before:absolute before:inset-y-0 before:left-0 before:my-auto before:block before:h-8 before:w-px before:bg-slate-200 before:dark:bg-darkmode-400">
                             <div class="flex items-center justify-center">
-                                <a class="mr-3 flex items-center" href="/management/parent/edit/${parent.id}">
+                                <a class="mr-3 flex items-center" href="/management/subparent/edit/${parent.id}">
                                     <i data-tw-merge="" data-lucide="check-square"
                                         class="stroke-1.5 mr-1 h-4 w-4"></i>
                                     Edit

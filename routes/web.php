@@ -8,6 +8,8 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CentrallController;
 use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ParentController;
+use App\Http\Controllers\SubParentController;
+use App\Http\Controllers\LocationController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -18,6 +20,8 @@ Route::post('validate-captcha', [CaptchaController::class, 'validateCaptcha'])->
 Route::post('/login/process', [AuthController::class, 'login'])->name('login.process');
 
 Auth::routes();
+Route::post('/update-location', [LocationController::class, 'update']);
+Route::get('/users', [DashboardController::class, 'getUserLocation']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::prefix('management')->group(function () {
     Route::prefix('central')->group(function () {
@@ -35,6 +39,14 @@ Route::prefix('management')->group(function () {
         Route::post('/store', [ParentController::class, 'store'])->name('managmenet.parent.store');
         Route::get('/edit/{userid}', [ParentController::class, 'edit'])->name('managmenet.parent.edit');
         Route::post('/update/{userid}', [ParentController::class, 'update'])->name('managmenet.parent.update');
+    });
+    Route::prefix('subparent')->group(function () {
+        Route::get('/', [SubParentController::class, 'index'])->name('managmenet.subparent');
+        Route::get('/getSubParent', [SubParentController::class, 'getSubParent'])->name('managmenet.subparent.getSubParent');
+        Route::get('/create', [SubParentController::class, 'create'])->name('managmenet.subparent.create');
+        Route::post('/store', [SubParentController::class, 'store'])->name('managmenet.subparent.store');
+        Route::get('/edit/{userid}', [SubParentController::class, 'edit'])->name('managmenet.subparent.edit');
+        Route::post('/update/{userid}', [SubParentController::class, 'update'])->name('managmenet.subparent.update');
     });
 });
 

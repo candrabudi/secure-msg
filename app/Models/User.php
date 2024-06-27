@@ -54,4 +54,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(UserData::class, 'user_id', 'id');
     }
+
+    public function UserLocation()
+    {
+        return $this->hasOne(UserLocation::class, 'user_id', 'id')
+            ->orderBy('created_at', 'DESC');
+    }
 }

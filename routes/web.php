@@ -11,6 +11,7 @@ use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SubParentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CoordinatorController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -33,6 +34,7 @@ Route::prefix('management')->group(function () {
         Route::post('/update/{userid}', [CentrallController::class, 'update'])->name('management.central.update');
         Route::get('/getCentral', [CentrallController::class, 'getCentral'])->name('management.central.getCentral');
     });
+
     Route::prefix('parent')->group(function () {
         Route::get('/', [ParentController::class, 'index'])->name('management.parent');
         Route::get('/getParent', [ParentController::class, 'getParent'])->name('management.parent.getParent');
@@ -41,6 +43,16 @@ Route::prefix('management')->group(function () {
         Route::get('/edit/{userid}', [ParentController::class, 'edit'])->name('management.parent.edit');
         Route::post('/update/{userid}', [ParentController::class, 'update'])->name('management.parent.update');
     });
+
+    Route::prefix('coordinator')->group(function () {
+        Route::get('/', [CoordinatorController::class, 'index'])->name('management.coordinator');
+        Route::get('/getCoordinator', [CoordinatorController::class, 'getCoordinator'])->name('management.coordinator.getCoordinator');
+        Route::get('/create', [CoordinatorController::class, 'create'])->name('management.coordinator.create');
+        Route::post('/store', [CoordinatorController::class, 'store'])->name('management.coordinator.store');
+        Route::get('/edit/{userid}', [CoordinatorController::class, 'edit'])->name('management.coordinator.edit');
+        Route::post('/update/{userid}', [CoordinatorController::class, 'update'])->name('management.coordinator.update');
+    });
+    
     Route::prefix('subparent')->group(function () {
         Route::get('/', [SubParentController::class, 'index'])->name('management.subparent');
         Route::get('/getSubParent', [SubParentController::class, 'getSubParent'])->name('management.subparent.getSubParent');
@@ -49,6 +61,7 @@ Route::prefix('management')->group(function () {
         Route::get('/edit/{userid}', [SubParentController::class, 'edit'])->name('management.subparent.edit');
         Route::post('/update/{userid}', [SubParentController::class, 'update'])->name('management.subparent.update');
     });
+
     Route::prefix('member')->group(function () {
         Route::get('/', [MemberController::class, 'index'])->name('management.member');
         Route::get('/getMember', [MemberController::class, 'getMember'])->name('management.member.getMember');

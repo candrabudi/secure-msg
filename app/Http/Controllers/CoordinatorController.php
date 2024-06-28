@@ -6,25 +6,25 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserData;
-class ParentController extends Controller
+class CoordinatorController extends Controller
 {
     public function index()
     {
-        return view('parent.index');
+        return view('coordinator.index');
     }
 
-    public function getParent()
+    public function getCoordinator()
     {
-        $parents = User::where('role_id', 4)
+        $coordinators = User::where('role_id', 6)
             ->with('UserProfile')
             ->paginate(10);
 
-        return response()->json($parents);
+        return response()->json($coordinators);
     }
 
     public function create()
     {
-        return view('parent.create');
+        return view('coordinator.create');
     }
 
     public function store(Request $request)
@@ -34,8 +34,8 @@ class ParentController extends Controller
             $suser->username = $request->username;
             $suser->password = bcrypt($request->password);
             $suser->is_admin = $request->is_admin ?? 0;
-            $suser->role_id = 4;
-            $suser->status = 1;
+            $suser->role_id = 8;
+            $suser->status = $request->account_status ?? 0;
             $suser->expired_at = $request->expired_at;
             $suser->save();
             $suser->fresh();
@@ -44,10 +44,13 @@ class ParentController extends Controller
             $suserdata->user_id = $suser->id;
             $suserdata->central_id = $request->central_id ?? 0;
             $suserdata->parent_id = $request->parent_id ?? 0;
-            $suserdata->sub_parent_id = 0;
-            $suserdata->coordinator_id = 0;
+            $suserdata->sub_parent_id = $request->sub_parent_id ?? 0;
+            $suserdata->coordinator_id = $request->coordinator_id ?? 0;
             $suserdata->sub_coordinator_id = 0;
             $suserdata->structure_task_id = 0;
+            $suserdata->latitude = $request->latitude;
+            $suserdata->longtitude = $request->longtitude;
+            $suserdata->description = $request->description;
             $suserdata->status = 1;
             $suserdata->position = $request->data_position ?? 1;
             $suserdata->save();
@@ -58,7 +61,6 @@ class ParentController extends Controller
             $suserprofile->full_name = $request->full_name;
             $suserprofile->national_id = $request->nrp_nik;
             $suserprofile->position = $request->position;
-            $suserprofile->aka_name = $request->aka_name;
             $suserprofile->gender = $request->gender;
             $suserprofile->save();
 
@@ -75,7 +77,7 @@ class ParentController extends Controller
         $user = User::where('id', $userid)
             ->first();
 
-        return view('parent.edit', compact('user'));
+        return view('coordinator.edit', compact('user'));
     }
 
     public function update($user_id, Request $request)

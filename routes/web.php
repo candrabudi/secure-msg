@@ -12,6 +12,7 @@ use App\Http\Controllers\SubParentController;
 use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CoordinatorController;
+use App\Http\Controllers\SubCoordinatorController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -51,6 +52,15 @@ Route::prefix('management')->group(function () {
         Route::post('/store', [CoordinatorController::class, 'store'])->name('management.coordinator.store');
         Route::get('/edit/{userid}', [CoordinatorController::class, 'edit'])->name('management.coordinator.edit');
         Route::post('/update/{userid}', [CoordinatorController::class, 'update'])->name('management.coordinator.update');
+    });
+    
+    Route::prefix('subcoordinator')->group(function () {
+        Route::get('/', [SubCoordinatorController::class, 'index'])->name('management.subcoordinator');
+        Route::get('/getSubCoordinator', [SubCoordinatorController::class, 'getSubCoordinator'])->name('management.subcoordinator.getSubCoordinator');
+        Route::get('/create', [SubCoordinatorController::class, 'create'])->name('management.subcoordinator.create');
+        Route::post('/store', [SubCoordinatorController::class, 'store'])->name('management.subcoordinator.store');
+        Route::get('/edit/{userid}', [SubCoordinatorController::class, 'edit'])->name('management.subcoordinator.edit');
+        Route::post('/update/{userid}', [SubCoordinatorController::class, 'update'])->name('management.subcoordinator.update');
     });
     
     Route::prefix('subparent')->group(function () {

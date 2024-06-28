@@ -13,6 +13,7 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\SubCoordinatorController;
+use App\Http\Controllers\TaskTypeController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -90,5 +91,14 @@ Route::prefix('master-data')->group(function () {
         Route::get('/edit/{usertypeid}', [UserTypeController::class, 'edit'])->name('masterdata.typeuser.edit');
         Route::post('/store', [UserTypeController::class, 'store'])->name('masterdata.typeuser.store');
         Route::post('/update/{usertypeid}', [UserTypeController::class, 'update'])->name('masterdata.typeuser.update');
+    });
+    
+    Route::prefix('tipe-tugas')->group(function () {
+        Route::get('/', [TaskTypeController::class, 'index'])->name('masterdata.tasktype.index');
+        Route::get('/getTaskType', [TaskTypeController::class, 'getTaskType'])->name('masterdata.tasktype.getTaskType');
+        Route::get('/create', [TaskTypeController::class, 'create'])->name('masterdata.tasktype.create');
+        Route::get('/edit/{tasktypeid}', [TaskTypeController::class, 'edit'])->name('masterdata.tasktype.edit');
+        Route::post('/store', [TaskTypeController::class, 'store'])->name('masterdata.tasktype.store');
+        Route::post('/update/{tasktypeid}', [TaskTypeController::class, 'update'])->name('masterdata.tasktype.update');
     });
 });

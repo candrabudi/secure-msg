@@ -6,7 +6,7 @@
         <h2 class="intro-y mt-10 text-lg font-medium">Data List Sub Induk</h2>
         <div class="mt-5 grid grid-cols-12 gap-6">
             <div class="intro-y col-span-12 mt-2 flex flex-wrap items-center sm:flex-nowrap">
-                <a href="{{ route('managmenet.subparent.create') }}" data-tw-merge=""
+                <a href="{{ route('management.subparent.create') }}" data-tw-merge=""
                     class="transition duration-200 border inline-flex items-center justify-center py-2 px-3 rounded-md font-medium cursor-pointer focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus-visible:outline-none dark:focus:ring-slate-700 dark:focus:ring-opacity-50 [&:hover:not(:disabled)]:bg-opacity-90 [&:hover:not(:disabled)]:border-opacity-90 [&:not(button)]:text-center disabled:opacity-70 disabled:cursor-not-allowed bg-primary border-primary text-white dark:border-primary mr-2 shadow-md">Tambah
                     Data</a>
                 <div data-tw-merge="" data-tw-placement="bottom-end" class="dropdown relative"><button data-tw-merge=""
@@ -113,7 +113,7 @@
             const pagination = document.getElementById('pagination');
             const parentTBody = document.getElementById('product-tbody');
             const perPageSelect = document.getElementById('per-page');
-            const productsIndexRoute = @json(route('managmenet.subparent.getSubParent'));
+            const productsIndexRoute = @json(route('management.subparent.getSubParent'));
             const searchInput = document.getElementById('search-input');
             const infoDiv = document.getElementById('info-div'); 
 

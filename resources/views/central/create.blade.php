@@ -6,7 +6,7 @@
         <div class="intro-y mt-8 flex items-center">
             <h2 class="mr-auto text-lg font-medium">Tambah Data Pusat</h2>
         </div>
-        <form id="registration-form" action="{{ route('managmenet.central.store') }}" method="POST">
+        <form id="registration-form" action="{{ route('management.central.store') }}" method="POST">
             @csrf
             <div class="mt-5 grid grid-cols-12 gap-6">
                 <div class="intro-y col-span-12 lg:col-span-6">

@@ -10,6 +10,7 @@ use App\Http\Controllers\UserTypeController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\SubParentController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\MemberController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -25,28 +26,36 @@ Route::get('/users', [DashboardController::class, 'getUserLocation']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::prefix('management')->group(function () {
     Route::prefix('central')->group(function () {
-        Route::get('/', [CentrallController::class, 'index'])->name('managmenet.central');
-        Route::get('/create', [CentrallController::class, 'create'])->name('managmenet.central.create');
-        Route::post('/store', [CentrallController::class, 'store'])->name('managmenet.central.store');
-        Route::get('/edit/{userid}', [CentrallController::class, 'edit'])->name('managmenet.central.edit');
-        Route::post('/update/{userid}', [CentrallController::class, 'update'])->name('managmenet.central.update');
-        Route::get('/getCentral', [CentrallController::class, 'getCentral'])->name('managmenet.central.getCentral');
+        Route::get('/', [CentrallController::class, 'index'])->name('management.central');
+        Route::get('/create', [CentrallController::class, 'create'])->name('management.central.create');
+        Route::post('/store', [CentrallController::class, 'store'])->name('management.central.store');
+        Route::get('/edit/{userid}', [CentrallController::class, 'edit'])->name('management.central.edit');
+        Route::post('/update/{userid}', [CentrallController::class, 'update'])->name('management.central.update');
+        Route::get('/getCentral', [CentrallController::class, 'getCentral'])->name('management.central.getCentral');
     });
     Route::prefix('parent')->group(function () {
-        Route::get('/', [ParentController::class, 'index'])->name('managmenet.parent');
-        Route::get('/getParent', [ParentController::class, 'getParent'])->name('managmenet.parent.getParent');
-        Route::get('/create', [ParentController::class, 'create'])->name('managmenet.parent.create');
-        Route::post('/store', [ParentController::class, 'store'])->name('managmenet.parent.store');
-        Route::get('/edit/{userid}', [ParentController::class, 'edit'])->name('managmenet.parent.edit');
-        Route::post('/update/{userid}', [ParentController::class, 'update'])->name('managmenet.parent.update');
+        Route::get('/', [ParentController::class, 'index'])->name('management.parent');
+        Route::get('/getParent', [ParentController::class, 'getParent'])->name('management.parent.getParent');
+        Route::get('/create', [ParentController::class, 'create'])->name('management.parent.create');
+        Route::post('/store', [ParentController::class, 'store'])->name('management.parent.store');
+        Route::get('/edit/{userid}', [ParentController::class, 'edit'])->name('management.parent.edit');
+        Route::post('/update/{userid}', [ParentController::class, 'update'])->name('management.parent.update');
     });
     Route::prefix('subparent')->group(function () {
-        Route::get('/', [SubParentController::class, 'index'])->name('managmenet.subparent');
-        Route::get('/getSubParent', [SubParentController::class, 'getSubParent'])->name('managmenet.subparent.getSubParent');
-        Route::get('/create', [SubParentController::class, 'create'])->name('managmenet.subparent.create');
-        Route::post('/store', [SubParentController::class, 'store'])->name('managmenet.subparent.store');
-        Route::get('/edit/{userid}', [SubParentController::class, 'edit'])->name('managmenet.subparent.edit');
-        Route::post('/update/{userid}', [SubParentController::class, 'update'])->name('managmenet.subparent.update');
+        Route::get('/', [SubParentController::class, 'index'])->name('management.subparent');
+        Route::get('/getSubParent', [SubParentController::class, 'getSubParent'])->name('management.subparent.getSubParent');
+        Route::get('/create', [SubParentController::class, 'create'])->name('management.subparent.create');
+        Route::post('/store', [SubParentController::class, 'store'])->name('management.subparent.store');
+        Route::get('/edit/{userid}', [SubParentController::class, 'edit'])->name('management.subparent.edit');
+        Route::post('/update/{userid}', [SubParentController::class, 'update'])->name('management.subparent.update');
+    });
+    Route::prefix('member')->group(function () {
+        Route::get('/', [MemberController::class, 'index'])->name('management.member');
+        Route::get('/getMember', [MemberController::class, 'getMember'])->name('management.member.getMember');
+        Route::get('/create', [MemberController::class, 'create'])->name('management.member.create');
+        Route::post('/store', [MemberController::class, 'store'])->name('management.member.store');
+        Route::get('/edit/{userid}', [MemberController::class, 'edit'])->name('management.member.edit');
+        Route::post('/update/{userid}', [MemberController::class, 'update'])->name('management.member.update');
     });
 });
 

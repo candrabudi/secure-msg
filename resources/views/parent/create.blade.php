@@ -24,8 +24,12 @@
                                         <label>Pusat</label>
                                         <div class="mt-2">
                                             <select data-placeholder="Pilih Data Pusat Jika Perlu" class="tom-select w-full"
-                                                name="central_id">
-                                                <option value=""></option>
+                                                name="central_id" id="pusatDropdown">
+                                                <option value="">Pilih Pusat</option>
+                                                @foreach ($centrals as $cen)
+                                                    <option value="{{ $cen->id }}">{{ $cen->UserProfile->full_name }}
+                                                    </option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -34,9 +38,10 @@
                                     <div>
                                         <label>Induk</label>
                                         <div class="mt-2">
-                                            <select data-placeholder="Pilih Data Induk Jika Perlu" class="tom-select w-full"
-                                                name="parent_id">
-                                                <option value=""></option>
+                                            <select data-tw-merge="" name="parent_id" id="indukDropdown"
+                                                aria-label="Default select example"
+                                                class="disabled:bg-slate-100 disabled:cursor-not-allowed disabled:dark:bg-darkmode-800/50 [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 transition duration-200 ease-in-out w-full text-sm border-slate-200 shadow-sm rounded-md py-2 px-3 pr-8 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 group-[.form-inline]:flex-1 sm:mr-2">
+                                                <option value="0">Pilih opsi</option>
                                             </select>
                                         </div>
                                     </div>
@@ -66,7 +71,7 @@
                         </div>
                         <div class="p-5">
                             <div class="preview relative [&.hide]:overflow-hidden [&.hide]:h-0">
-                                <div class="input-form mt-3">
+                                <div class="input-form">
                                     <div>
                                         <label>Username</label>
                                         <div class="mt-2">
@@ -95,7 +100,8 @@
                                             <div data-tw-merge=""
                                                 class="flex items-center mt-3 w-full sm:ml-auto sm:mt-0 sm:w-auto">
                                                 <div class="preview relative [&.hide]:overflow-hidden [&.hide]:h-0">
-                                                    <input data-tw-merge="" name="expired_at" type="text" data-single-mode="true"
+                                                    <input data-tw-merge="" name="expired_at" type="text"
+                                                        data-single-mode="true"
                                                         class="disabled:bg-slate-100 disabled:cursor-not-allowed dark:disabled:bg-darkmode-800/50 dark:disabled:border-transparent [&[readonly]]:bg-slate-100 [&[readonly]]:cursor-not-allowed [&[readonly]]:dark:bg-darkmode-800/50 [&[readonly]]:dark:border-transparent transition duration-200 ease-in-out text-sm border-slate-200 shadow-sm rounded-md placeholder:text-slate-400/90 focus:ring-4 focus:ring-primary focus:ring-opacity-20 focus:border-primary focus:border-opacity-40 dark:bg-darkmode-800 dark:border-transparent dark:focus:ring-slate-700 dark:focus:ring-opacity-50 dark:placeholder:text-slate-500/80 group-[.form-inline]:flex-1 group-[.input-group]:rounded-none group-[.input-group]:[&:not(:first-child)]:border-l-transparent group-[.input-group]:first:rounded-l group-[.input-group]:last:rounded-r group-[.input-group]:z-10 datepicker mx-auto block w-56">
                                                 </div>
                                             </div>
@@ -197,58 +203,37 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $(document).ready(function() {
-            $('#registration-form').submit(function(event) {
-                event.preventDefault(); // Prevent default form submission
-
-                // Disable submit button
-                $('#submit-btn').prop('disabled', true);
-
-                // Show processing modal
-                $('#processing-modal').removeClass('hidden');
-
-                // Simulate form data (replace with actual form data)
-                var formData = {
-                    // Add your form data here
-                    // Example:
-                    // 'name': $('#name').val(),
-                    // 'email': $('#email').val(),
-                    // 'message': $('#message').val()
-                };
-
-                // AJAX POST request
-                $.ajax({
-                    type: 'POST',
-                    url: '/your-api-endpoint', // Replace with your actual API endpoint
-                    data: formData,
-                    success: function(response) {
-                        // Hide processing modal
-                        $('#processing-modal').addClass('hidden');
-
-                        // Show success notification using Toastify or other notification library if needed
-                        Toastify({
-                            node: $("#success-notif-create").clone()
-                                .removeClass("hidden")[0],
-                            duration: -1,
-                            newWindow: !0,
-                            close: !0,
-                            gravity: "top",
-                            position: "right",
-                            stopOnFocus: !0
-                        }).showToast()
-                        // Reset form and enable submit button
-                        $('#registration-form')[0].reset();
-                        $('#submit-btn').prop('disabled', false);
-
-                        // Redirect to another page or route after success (replace '/success-page' with your actual route)
-                        window.location.href = '/success-page';
-                    },
-                    error: function(error) {
-                        console.error('Error:', error);
-                        // Handle error if needed
-                    }
-                });
+            $('#pusatDropdown').on('change', function() {
+                var pusatOption = $(this).val();
+                if (pusatOption) {
+                    $.ajax({
+                        url: '{{ route('getDropdownParent') }}',
+                        type: 'POST',
+                        data: {
+                            central_id: pusatOption
+                        },
+                        headers: {
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        },
+                        success: function(data) {
+                            $('#indukDropdown').empty();
+                            $('#indukDropdown').append('<option value="">Pilih opsi</option>');
+                            $.each(data, function(key, value) {
+                                console.log(data);
+                                $('#indukDropdown').append('<option value="' + value
+                                    .id + '">' + value.full_name + '</option>');
+                            });
+                        }
+                    });
+                } else {
+                    $('#indukDropdown').empty();
+                    $('#indukDropdown').append('<option value="">Pilih opsi</option>');
+                }
             });
         });
     </script>

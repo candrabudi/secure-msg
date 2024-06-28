@@ -24,7 +24,10 @@ class SubParentController extends Controller
 
     public function create()
     {
-        return view('subparent.create');
+        $centrals = User::where('role_id', 3)
+            ->get();
+
+        return view('subparent.create', compact('centrals'));
     }
 
     public function store(Request $request)
@@ -44,7 +47,7 @@ class SubParentController extends Controller
             $suserdata->user_id = $suser->id;
             $suserdata->central_id = $request->central_id ?? 0;
             $suserdata->parent_id = $request->parent_id ?? 0;
-            $suserdata->sub_parent_id = 0;
+            $suserdata->sub_parent_id = $request->sub_parent_id ?? 0;
             $suserdata->coordinator_id = 0;
             $suserdata->sub_coordinator_id = 0;
             $suserdata->structure_task_id = 0;

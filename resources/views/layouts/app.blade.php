@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="csrf-token" content="ceKdwoQjZ4VuoGqoSQaSREwB7MD9sjwFnfhlp7MH">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description"
         content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
@@ -24,7 +24,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/toastify.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/vendors/tom-select.css') }}">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet-3dtiles/dist/leaflet-3dtiles.css" />
 
     <style>
         #map {
@@ -54,7 +55,7 @@
             </div>
         </div>
     </div>
-    <!-- BEGIN: Vendor JS Assets-->
+
     <script src="{{ asset('assets/js/vendors/dom.js') }}"></script>
     <script src="{{ asset('assets/js/vendors/tailwind-merge.js') }}"></script>
     <script src="{{ asset('assets/js/utils/helper.js') }}"></script>
@@ -91,24 +92,9 @@
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script>
-        // Additional scripts as per your application needs
+    
     </script>
     @yield('scripts')
-
-    <script>
-        // Inisialisasi peta dan atur titik tengah ke Indonesia
-        var map = L.map('map').setView([-2.548926, 118.0148634], 5);
-
-        // Menambahkan tile layer (peta dasar)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        }).addTo(map);
-
-        // Menambahkan marker ke peta
-        var marker = L.marker([-6.2087634, 106.845599]).addTo(map)
-            .bindPopup('Jakarta, Indonesia')
-            .openPopup();
-    </script>
 </body>
 
 </html>

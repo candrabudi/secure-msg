@@ -12,6 +12,7 @@
             </a>
         </li>
 
+        @include('layouts.components.desktop.menu-report')
         @include('layouts.components.desktop.menu-management-user')
         @include('layouts.components.desktop.menu-master-data')
     </ul>

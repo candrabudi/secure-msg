@@ -25,7 +25,10 @@
                                         <div class="mt-2">
                                             <select data-placeholder="Pilih Data Pusat Jika Perlu" class="tom-select w-full"
                                                 name="central_id">
-                                                <option value=""></option>
+                                                <option value="">Pilih Data</option>
+                                                @foreach ($centrals as $cen)
+                                                    <option value="{{ $cen->id }}">{{ $cen->UserProfile->full_name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>

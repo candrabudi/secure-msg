@@ -24,7 +24,10 @@ class CentrallController extends Controller
 
     public function create()
     {
-        return view('central.create');
+        $centrals = User::where('role_id', 3)
+            ->get();
+
+        return view('central.create', compact('centrals'));
     }
 
     public function store(Request $request)
@@ -42,12 +45,7 @@ class CentrallController extends Controller
 
             $suserdata = new UserData();
             $suserdata->user_id = $suser->id;
-            $suserdata->central_id = 0;
-            $suserdata->parent_id = 0;
-            $suserdata->sub_parent_id = 0;
-            $suserdata->coordinator_id = 0;
-            $suserdata->sub_coordinator_id = 0;
-            $suserdata->structure_task_id = 0;
+            $suserdata->central_id = $request->central_id;
             $suserdata->latitude = $request->latitude;
             $suserdata->longtitude = $request->longtitude;
             $suserdata->description = $request->description;

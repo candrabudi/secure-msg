@@ -24,7 +24,10 @@ class ParentController extends Controller
 
     public function create()
     {
-        return view('parent.create');
+        $centrals = User::where('role_id', 3)
+            ->get();
+
+        return view('parent.create', compact('centrals'));
     }
 
     public function store(Request $request)

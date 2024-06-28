@@ -14,6 +14,8 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CoordinatorController;
 use App\Http\Controllers\SubCoordinatorController;
 use App\Http\Controllers\TaskTypeController;
+use App\Http\Controllers\CategoryTaskController;
+use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
     return redirect()->route('login');
@@ -27,6 +29,10 @@ Auth::routes();
 Route::post('/update-location', [LocationController::class, 'update']);
 Route::get('/users', [DashboardController::class, 'getUserLocation']);
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+Route::post('/getDropdownParent', [HomeController::class, 'getDropdownParent'])->name('getDropdownParent');
+Route::post('/getDropdownSubParent', [HomeController::class, 'getDropdownSubParent'])->name('getDropdownSubParent');
+
 Route::prefix('management')->group(function () {
     Route::prefix('central')->group(function () {
         Route::get('/', [CentrallController::class, 'index'])->name('management.central');
@@ -100,5 +106,16 @@ Route::prefix('master-data')->group(function () {
         Route::get('/edit/{tasktypeid}', [TaskTypeController::class, 'edit'])->name('masterdata.tasktype.edit');
         Route::post('/store', [TaskTypeController::class, 'store'])->name('masterdata.tasktype.store');
         Route::post('/update/{tasktypeid}', [TaskTypeController::class, 'update'])->name('masterdata.tasktype.update');
+    });
+});
+
+Route::prefix('report')->group(function () {
+    Route::prefix('category-report')->group(function () {
+        Route::get('/', [CategoryTaskController::class, 'index'])->name('report.category.index');
+        Route::get('/getCategoryTask', [CategoryTaskController::class, 'getCategoryTask'])->name('report.category.getCategoryTask');
+        Route::get('/create', [CategoryTaskController::class, 'create'])->name('report.category.create');
+        Route::get('/edit/{usertypeid}', [CategoryTaskController::class, 'edit'])->name('report.category.edit');
+        Route::post('/store', [CategoryTaskController::class, 'store'])->name('report.category.store');
+        Route::post('/update/{usertypeid}', [CategoryTaskController::class, 'update'])->name('report.category.update');
     });
 });
